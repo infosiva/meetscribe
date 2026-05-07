@@ -4,7 +4,7 @@ import SharedNavbar from '@/components/SharedNavbar'
 import SharedFooter from '@/components/SharedFooter'
 import type { BrandConfig } from '@/components/SharedNavbar'
 
-export const brand: BrandConfig = {
+const brand: BrandConfig = {
   name: 'MeetScribe',
   tagline: 'AI meeting notes for estate agents — transcribe, summarise, follow up in seconds.',
   icon: '🎙️',
