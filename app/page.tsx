@@ -82,8 +82,11 @@ export default function MeetScribePage() {
   const statusLabel: Record<Step, string> = { idle: '', recording: 'Recording…', transcribing: 'Transcribing with Whisper AI…', summarising: 'Generating structured notes…', done: '' }
 
   return (
-    <div className="min-h-screen">
-      <nav className="border-b border-white/[0.06] px-6 py-4 flex items-center justify-between">
+    <div className="min-h-screen relative">
+      <div className="noise-overlay" aria-hidden="true" />
+      <div className="orb orb-1" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.15), transparent 70%)' }} aria-hidden="true" />
+      <div className="orb orb-2" style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.10), transparent 70%)', animationDelay: '-6s' }} aria-hidden="true" />
+      <nav className="border-b border-white/[0.06] px-6 py-4 flex items-center justify-between relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center"><Mic size={16} className="text-white" /></div>
           <span className="font-bold text-white text-lg">MeetScribe</span>
