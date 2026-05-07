@@ -1,6 +1,7 @@
 'use client'
 import { useState, useRef } from 'react'
 import { Mic, MicOff, Upload, FileAudio, Copy, Download, CheckCircle, Zap, Clock, Users, ListChecks, Mail, ChevronDown, ChevronUp } from 'lucide-react'
+import VoiceButton from '@/components/VoiceButton'
 
 interface ActionItem { owner: string; task: string; deadline: string }
 interface MeetingSummary {
@@ -213,9 +214,11 @@ export default function MeetScribePage() {
         )}
       </main>
 
-      <footer className="border-t border-white/[0.06] py-6 text-center text-white/25 text-xs">
-        MeetScribe · AI meeting notes for estate agents · £19/mo after free trial
-      </footer>
+      <VoiceButton
+        onTranscript={(text) => { /* prefill demo if idle */ }}
+        color="#6366f1"
+        position="bottom-right"
+      />
     </div>
   )
 }
