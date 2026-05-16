@@ -45,6 +45,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             { "@type": "WebSite", "name": "MeetScribe", "url": brand.url }
           ]
         })}} />
+      
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+        <style dangerouslySetInnerHTML={{ __html: `
+          :root {
+            --theme-primary: #6366f1;
+            --theme-secondary: #8b5cf6;
+            --theme-base: #08071a;
+            --background: #08071a;
+            --surface-1: #100f28;
+            --surface-2: #18163a;
+            --foreground: #eef2ff;
+            --text-2: #a5b4fc;
+            --border-default: rgba(99,102,241,0.15);
+            --border-strong: rgba(99,102,241,0.3);
+          }
+          body { font-family: 'Inter', system-ui, sans-serif !important; }
+          h1, h2, h3 { font-family: 'Lora', serif !important; }
+          .glass { background: rgba(8,7,26,0.7) !important; border-color: rgba(99,102,241,0.12) !important; }
+        ` }} />
       </head>
       <body className="flex flex-col min-h-screen">
         <DesignEffects />
