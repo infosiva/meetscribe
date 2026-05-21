@@ -4,6 +4,7 @@ import SharedNavbar from '@/components/SharedNavbar'
 import SharedFooter from '@/components/SharedFooter'
 import DesignEffects from '@/components/DesignEffects'
 import type { BrandConfig } from '@/components/SharedNavbar'
+import FloatingChatWrapper from '@/components/FloatingChatWrapper'
 
 const brand: BrandConfig = {
   name: 'MeetScribe',
@@ -22,10 +23,12 @@ export const metadata: Metadata = {
   title: 'MeetScribe — AI Meeting Notes for Estate Agents',
   description: 'Record or upload your client calls. AI transcribes, summarises and drafts follow-up emails instantly. Built for UK estate agents.',
   keywords: ['meeting notes', 'AI transcription', 'estate agent tools', 'property CRM', 'meeting summary'],
+  metadataBase: new URL('https://meetscribe.vercel.app'),
   openGraph: {
     title: 'MeetScribe — AI Meeting Notes for Estate Agents',
     description: 'AI transcribes your calls and drafts follow-up emails instantly.',
     type: 'website', locale: 'en_GB', siteName: 'MeetScribe',
+    images: [{ url: '/og.png', width: 1200, height: 630 }],
   },
   twitter: { card: 'summary_large_image', title: 'MeetScribe', description: 'AI meeting notes for estate agents.' },
   robots: { index: true, follow: true },
@@ -72,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SharedNavbar brand={brand} />
         <main className="flex-1 pt-16">{children}</main>
         <SharedFooter brand={brand} />
+        <FloatingChatWrapper />
       </body>
     </html>
   )
