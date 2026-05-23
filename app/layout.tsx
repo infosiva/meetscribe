@@ -5,6 +5,7 @@ import SharedFooter from '@/components/SharedFooter'
 import DesignEffects from '@/components/DesignEffects'
 import type { BrandConfig } from '@/components/SharedNavbar'
 import FloatingChatWrapper from '@/components/FloatingChatWrapper'
+import BackToTop from '@/components/BackToTop'
 
 const brand: BrandConfig = {
   name: 'MeetScribe',
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 pt-16">{children}</main>
         <SharedFooter brand={brand} />
         <FloatingChatWrapper />
+        <BackToTop accentColor="#6366f1" />
       </body>
     </html>
   )
