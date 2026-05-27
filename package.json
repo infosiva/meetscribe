@@ -10,6 +10,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.0",
     "@google/generative-ai": "^0.24.1",
+    "@vercel/edge-config": "^1.4.3",
     "framer-motion": "^12.39.0",
     "groq-sdk": "^1.1.2",
     "lucide-react": "^1.14.0",
