@@ -94,7 +94,7 @@ export default function FloatingChatWrapper() {
             <div style={{ flexShrink: 0, padding: '10px 12px', borderTop: `1px solid rgba(${ACCENT_RGB},0.15)`,
               display: 'flex', gap: 8, paddingBottom: 'max(10px, env(safe-area-inset-bottom))' }}>
               <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()}
-                placeholder="Ask anything..."
+                placeholder="Paste transcript or describe meeting — get notes instantly"
                 style={{ flex: 1, background: 'rgba(255,255,255,0.06)', border: `1px solid rgba(${ACCENT_RGB},0.25)`,
                   borderRadius: 10, padding: '8px 12px', fontSize: isMobile ? 16 : 13, color: '#eef', outline: 'none' }} />
               <button onClick={send} style={{ background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})`, border: 'none',

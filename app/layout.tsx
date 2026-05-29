@@ -10,7 +10,7 @@ import BackToTop from '@/components/BackToTop'
 
 const brand: BrandConfig = {
   name: 'MeetScribe',
-  tagline: 'AI meeting notes for estate agents — transcribe, summarise, follow up in seconds.',
+  tagline: 'Meeting done. Notes ready instantly — no Zoom lock-in, no complex setup.',
   icon: '🎙️',
   color: '#6366f1',
   url: 'https://meetscribe.vercel.app',
