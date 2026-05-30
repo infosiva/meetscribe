@@ -179,8 +179,8 @@ export default function MeetScribePage({ overrides = {} }: { overrides?: Content
       <div className="tool-zone">
         <div className="top-row">
           <div className="top-title">
-            <h1>{overrides.headline ?? 'Turn client calls into structured notes'}</h1>
-            <p>{overrides.subheadline ?? 'Record or upload any call — action items, decisions, follow-up email in under 30s'}</p>
+            <h1>{overrides.headline ?? 'Meeting notes that actually do something'}</h1>
+            <p>{overrides.subheadline ?? 'Tasks auto-sent to Jira, decisions to Notion, zero copy-paste. Record or upload any call — done in under 30s.'}</p>
           </div>
           {recording && (
             <div className="recording-pulse">
@@ -227,6 +227,13 @@ export default function MeetScribePage({ overrides = {} }: { overrides?: Content
                 <span key={f.label} className="feat-pill">{f.icon} {f.label}</span>
               ))}
             </div>
+            {/* Integration badges */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
+              <span style={{ fontSize: 10, color: T.muted, fontWeight: 600 }}>Works with:</span>
+              {['Notion', 'Jira', 'Slack', 'Linear'].map(name => (
+                <span key={name} style={{ fontSize: 10, fontWeight: 700, padding: '3px 9px', borderRadius: 99, background: 'rgba(14,165,233,0.08)', border: '1px solid rgba(14,165,233,0.18)', color: T.sky }}>{name}</span>
+              ))}
+            </div>
           </>
         )}
 
@@ -271,14 +278,26 @@ export default function MeetScribePage({ overrides = {} }: { overrides?: Content
             <div className="card">
               <div className="card-label" style={{ display: 'flex', alignItems: 'center', gap: 6 }}><ListChecks size={11} /> Action Items</div>
               {summary.actionItems.map((a, i) => (
-                <div key={i} className="action-item">
+                <div key={i} className="action-item" style={{ flexWrap: 'wrap', gap: 8 }}>
                   <div className="ai-check" />
-                  <div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="ai-task">{a.task}</div>
                     <div className="ai-meta">
                       <span className="ai-owner">{a.owner}</span>
                       <span className="ai-dl">{a.deadline}</span>
                     </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: 5, flexShrink: 0 }}>
+                    {[
+                      { label: 'Notion', href: '/integrate?target=notion', color: 'rgba(255,255,255,0.08)', border: 'rgba(255,255,255,0.12)', text: 'rgba(255,255,255,0.55)' },
+                      { label: 'Jira',   href: '/integrate?target=jira',   color: 'rgba(14,165,233,0.08)', border: 'rgba(14,165,233,0.2)',  text: T.sky },
+                      { label: 'Slack',  href: '/integrate?target=slack',  color: 'rgba(20,184,166,0.08)', border: 'rgba(20,184,166,0.2)',  text: T.teal },
+                    ].map(btn => (
+                      <a key={btn.label} href={btn.href}
+                        style={{ fontSize: 9, fontWeight: 700, padding: '3px 7px', borderRadius: 6, background: btn.color, border: `1px solid ${btn.border}`, color: btn.text, textDecoration: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                        title={`Send to ${btn.label}`}
+                      >{btn.label}</a>
+                    ))}
                   </div>
                 </div>
               ))}
