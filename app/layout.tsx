@@ -13,7 +13,7 @@ const brand: BrandConfig = {
   tagline: 'Meeting done. Notes ready instantly — no Zoom lock-in, no complex setup.',
   icon: '🎙️',
   color: '#6366f1',
-  url: 'https://meetscribe.vercel.app',
+  url: 'https://meetscribe.app',
   navLinks: [
     { label: 'How it works', href: '#how' },
     { label: 'For agents', href: '#agents' },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   title: 'MeetScribe — AI Meeting Notes for Estate Agents',
   description: 'Record or upload your client calls. AI transcribes, summarises and drafts follow-up emails instantly. Built for UK estate agents.',
   keywords: ['meeting notes', 'AI transcription', 'estate agent tools', 'property CRM', 'meeting summary'],
-  metadataBase: new URL('https://meetscribe.vercel.app'),
+  metadataBase: new URL('https://meetscribe.app'),
   openGraph: {
     title: 'MeetScribe — AI Meeting Notes for Estate Agents',
     description: 'AI transcribes your calls and drafts follow-up emails instantly.',
