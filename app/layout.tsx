@@ -12,7 +12,7 @@ const brand: BrandConfig = {
   name: 'MeetScribe',
   tagline: 'Meeting done. Notes ready instantly — no Zoom lock-in, no complex setup.',
   icon: '🎙️',
-  color: '#6366f1',
+  color: '#0891b2',
   url: 'https://meetscribe.app',
   navLinks: [
     { label: 'How it works', href: '#how' },
@@ -57,20 +57,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           :root {
-            --theme-primary: #6366f1;
-            --theme-secondary: #8b5cf6;
-            --theme-base: #08071a;
-            --background: #08071a;
-            --surface-1: #100f28;
-            --surface-2: #18163a;
-            --foreground: #eef2ff;
-            --text-2: #a5b4fc;
-            --border-default: rgba(99,102,241,0.15);
-            --border-strong: rgba(99,102,241,0.3);
+            --theme-primary: #0891b2;
+            --theme-secondary: #22d3ee;
+            --theme-base: #f8fafc;
+            --background: #f8fafc;
+            --surface-1: #ffffff;
+            --surface-2: #f0f9ff;
+            --foreground: #0f172a;
+            --text-2: #475569;
+            --border-default: rgba(8,145,178,0.15);
+            --border-strong: rgba(8,145,178,0.30);
           }
           body { font-family: 'Inter', system-ui, sans-serif !important; }
           h1, h2, h3 { font-family: 'Lora', serif !important; }
-          .glass { background: rgba(8,7,26,0.7) !important; border-color: rgba(99,102,241,0.12) !important; }
+          .glass { background: rgba(248,250,252,0.85) !important; border-color: rgba(8,145,178,0.12) !important; }
         ` }} />
       </head>
       <body className="flex flex-col min-h-screen">
@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 pt-16">{children}</main>
         <SharedFooter brand={brand} />
         <FloatingChatWrapper />
-        <BackToTop accentColor="#6366f1" />
+        <BackToTop accentColor="#0891b2" />
         <Script defer data-site="meetscribe.vercel.app" src="http://31.97.56.148:3098/t.js" strategy="afterInteractive" />
       </body>
     </html>

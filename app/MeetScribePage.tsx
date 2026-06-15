@@ -13,16 +13,16 @@ type Step = 'idle' | 'recording' | 'transcribing' | 'summarising' | 'done'
 type FeatureTab = 'transcription' | 'summaries' | 'actions' | 'integrations'
 
 const C = {
-  bg: '#0a0a0f',
-  s1: '#111118',
-  s2: '#16161f',
-  border: 'rgba(255,255,255,0.07)',
-  border2: 'rgba(6,182,212,0.25)',
-  text: '#f0f0f8',
-  muted: 'rgba(255,255,255,0.38)',
-  cyan: '#06b6d4',
-  cyan2: '#0891b2',
-  green: '#4ade80',
+  bg: '#f8fafc',
+  s1: '#ffffff',
+  s2: '#f0f9ff',
+  border: 'rgba(8,145,178,0.12)',
+  border2: 'rgba(8,145,178,0.30)',
+  text: '#0f172a',
+  muted: 'rgba(15,23,42,0.45)',
+  cyan: '#0891b2',
+  cyan2: '#22d3ee',
+  green: '#059669',
   red: 'rgba(239,68,68,0.9)',
 }
 
@@ -54,8 +54,8 @@ const FEATURE_CONTENT: Record<FeatureTab, {
           { speaker: 'Sarah', text: "I'll get back to you by Thursday." },
         ].map((line, i) => (
           <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-            <span style={{ fontSize: 10, fontWeight: 700, color: i % 2 === 0 ? C.cyan : '#a78bfa', minWidth: 44, paddingTop: 1 }}>{line.speaker}</span>
-            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6 }}>{line.text}</span>
+            <span style={{ fontSize: 10, fontWeight: 700, color: i % 2 === 0 ? C.cyan : '#7c3aed', minWidth: 44, paddingTop: 1 }}>{line.speaker}</span>
+            <span style={{ fontSize: 11, color: 'rgba(15,23,42,0.65)', lineHeight: 1.6 }}>{line.text}</span>
           </div>
         ))}
       </div>
@@ -74,9 +74,9 @@ const FEATURE_CONTENT: Record<FeatureTab, {
         <div style={{ fontSize: 11, fontWeight: 800, color: C.text, marginBottom: 8 }}>Property viewing — 42 Oak Street</div>
         <div style={{ fontSize: 10, color: C.muted, marginBottom: 12 }}>James Carter · Sarah Wong · 3 Jun 2026 · 4 min</div>
         <div style={{ fontSize: 10, fontWeight: 700, color: C.cyan, letterSpacing: '0.8px', marginBottom: 6, textTransform: 'uppercase' }}>Summary</div>
-        <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', lineHeight: 1.65, marginBottom: 12 }}>Johnsons offer £480k on 42 Oak Street. Mortgage in principle confirmed, 8-week completion. Vendor to confirm fitted wardrobes.</p>
-        <div style={{ fontSize: 10, fontWeight: 700, color: '#4ade80', letterSpacing: '0.8px', marginBottom: 6, textTransform: 'uppercase' }}>Decisions</div>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6, fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>
+        <p style={{ fontSize: 11, color: 'rgba(15,23,42,0.6)', lineHeight: 1.65, marginBottom: 12 }}>Johnsons offer £480k on 42 Oak Street. Mortgage in principle confirmed, 8-week completion. Vendor to confirm fitted wardrobes.</p>
+        <div style={{ fontSize: 10, fontWeight: 700, color: '#059669', letterSpacing: '0.8px', marginBottom: 6, textTransform: 'uppercase' }}>Decisions</div>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6, fontSize: 11, color: 'rgba(15,23,42,0.6)' }}>
           <CheckCircle size={11} color="#4ade80" style={{ flexShrink: 0, marginTop: 1 }} /> Offer to be presented to vendor by Thursday
         </div>
       </div>
@@ -224,19 +224,19 @@ export default function MeetScribePage({ overrides = {} }: { overrides?: Content
         *{box-sizing:border-box}
         /* ── Hero ── */
         .ms-hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1120px;margin:0 auto;padding:56px 24px 48px}
-        .ms-hero-left h1{font-size:clamp(28px,4vw,48px);font-weight:900;line-height:1.1;letter-spacing:-1px;color:#f0f0f8;margin-bottom:14px}
+        .ms-hero-left h1{font-size:clamp(28px,4vw,48px);font-weight:900;line-height:1.1;letter-spacing:-1px;color:#0f172a;margin-bottom:14px}
         .ms-hero-left h1 span{color:${C.cyan}}
-        .ms-hero-left p{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.65;max-width:440px;margin-bottom:28px}
+        .ms-hero-left p{font-size:15px;color:rgba(15,23,42,0.55);line-height:1.65;max-width:440px;margin-bottom:28px}
         .ms-cta-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-        .ms-btn-primary{background:${C.cyan};color:#000;font-size:13px;font-weight:800;padding:11px 24px;border-radius:10px;border:none;cursor:pointer;transition:opacity 0.12s,transform 0.12s;letter-spacing:-0.2px}
+        .ms-btn-primary{background:${C.cyan};color:#fff;font-size:13px;font-weight:800;padding:11px 24px;border-radius:10px;border:none;cursor:pointer;transition:opacity 0.12s,transform 0.12s;letter-spacing:-0.2px}
         .ms-btn-primary:hover{opacity:0.88}
         .ms-btn-primary:active{transform:scale(0.97)}
-        .ms-btn-ghost{background:transparent;color:rgba(255,255,255,0.55);font-size:13px;font-weight:600;padding:11px 20px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;transition:all 0.12s}
-        .ms-btn-ghost:hover{border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.8)}
+        .ms-btn-ghost{background:transparent;color:rgba(15,23,42,0.55);font-size:13px;font-weight:600;padding:11px 20px;border-radius:10px;border:1px solid rgba(8,145,178,0.18);cursor:pointer;transition:all 0.12s}
+        .ms-btn-ghost:hover{border-color:rgba(8,145,178,0.35);color:rgba(15,23,42,0.8)}
         .ms-btn-ghost:active{transform:scale(0.97)}
         /* transcript mockup */
-        .ms-mockup{background:${C.s1};border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px 22px;position:relative;overflow:hidden}
-        .ms-mockup::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 10%,rgba(6,182,212,0.06) 0%,transparent 60%);pointer-events:none}
+        .ms-mockup{background:${C.s1};border:1px solid ${C.border};border-radius:16px;padding:20px 22px;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(8,145,178,0.08)}
+        .ms-mockup::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 10%,rgba(8,145,178,0.04) 0%,transparent 60%);pointer-events:none}
         .ms-mockup-bar{display:flex;align-items:center;gap:6px;margin-bottom:16px}
         .ms-dot{width:8px;height:8px;border-radius:50%}
         .ms-mockup-label{font-size:10px;font-weight:700;letter-spacing:0.8px;color:${C.cyan};text-transform:uppercase;margin-left:auto}
@@ -246,64 +246,64 @@ export default function MeetScribePage({ overrides = {} }: { overrides?: Content
         .ms-how{max-width:1120px;margin:0 auto;padding:0 24px 48px}
         .ms-how-title{font-size:12px;font-weight:700;letter-spacing:1px;color:${C.cyan};text-transform:uppercase;margin-bottom:20px;text-align:center}
         .ms-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-        .ms-step{display:flex;align-items:flex-start;gap:14px;padding:20px 22px;background:${C.s1};border:1px solid ${C.border};border-radius:12px;margin:0 6px}
-        .ms-step-num{width:28px;height:28px;border-radius:8px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:${C.cyan};flex-shrink:0}
+        .ms-step{display:flex;align-items:flex-start;gap:14px;padding:20px 22px;background:${C.s1};border:1px solid ${C.border};border-radius:12px;margin:0 6px;box-shadow:0 2px 12px rgba(8,145,178,0.06)}
+        .ms-step-num{width:28px;height:28px;border-radius:8px;background:rgba(8,145,178,0.10);border:1px solid rgba(8,145,178,0.20);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:${C.cyan};flex-shrink:0}
         .ms-step h3{font-size:13px;font-weight:700;color:${C.text};margin-bottom:4px}
-        .ms-step p{font-size:11px;color:${C.muted};line-height:1.55}
+        .ms-step p{font-size:11px;color:rgba(15,23,42,0.5);line-height:1.55}
         /* Feature tabs */
         .ms-features{max-width:1120px;margin:0 auto;padding:0 24px 48px}
         .ms-section-label{font-size:12px;font-weight:700;letter-spacing:1px;color:${C.cyan};text-transform:uppercase;margin-bottom:20px;text-align:center}
         .ms-tabs{display:flex;gap:4px;background:${C.s1};border:1px solid ${C.border};border-radius:12px;padding:4px;margin-bottom:24px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
         .ms-tabs::-webkit-scrollbar{display:none}
-        .ms-tab{flex:1;min-width:max-content;padding:8px 16px;border-radius:9px;border:none;background:transparent;color:${C.muted};font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;white-space:nowrap}
-        .ms-tab.active{background:rgba(6,182,212,0.12);color:${C.cyan};border:1px solid rgba(6,182,212,0.2)}
-        .ms-tab:hover:not(.active){color:rgba(255,255,255,0.7)}
+        .ms-tab{flex:1;min-width:max-content;padding:8px 16px;border-radius:9px;border:none;background:transparent;color:rgba(15,23,42,0.45);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+        .ms-tab.active{background:rgba(8,145,178,0.10);color:${C.cyan};border:1px solid rgba(8,145,178,0.20)}
+        .ms-tab:hover:not(.active){color:rgba(15,23,42,0.7)}
         .ms-feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
         .ms-feat-title{font-size:20px;font-weight:800;color:${C.text};letter-spacing:-0.3px;margin-bottom:10px}
-        .ms-feat-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:18px}
+        .ms-feat-desc{font-size:13px;color:rgba(15,23,42,0.5);line-height:1.65;margin-bottom:18px}
         .ms-feat-bullets{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-        .ms-feat-bullets li{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(255,255,255,0.65);line-height:1.5}
+        .ms-feat-bullets li{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(15,23,42,0.65);line-height:1.5}
         .ms-feat-bullets li::before{content:'';width:5px;height:5px;border-radius:50%;background:${C.cyan};flex-shrink:0;margin-top:5px}
         /* Pricing */
         .ms-pricing{max-width:1120px;margin:0 auto;padding:0 24px 48px}
         .ms-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:640px;margin:0 auto}
-        .ms-price-card{background:${C.s1};border:1px solid ${C.border};border-radius:14px;padding:24px 22px}
-        .ms-price-card.pro{border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.04)}
-        .ms-price-name{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:${C.muted};margin-bottom:10px}
+        .ms-price-card{background:${C.s1};border:1px solid ${C.border};border-radius:14px;padding:24px 22px;box-shadow:0 2px 12px rgba(8,145,178,0.06)}
+        .ms-price-card.pro{border-color:rgba(8,145,178,0.30);background:rgba(8,145,178,0.04)}
+        .ms-price-name{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(15,23,42,0.45);margin-bottom:10px}
         .ms-price-amount{font-size:32px;font-weight:900;color:${C.text};letter-spacing:-1px;margin-bottom:4px}
-        .ms-price-amount span{font-size:14px;font-weight:500;color:${C.muted}}
+        .ms-price-amount span{font-size:14px;font-weight:500;color:rgba(15,23,42,0.45)}
         .ms-price-divider{height:1px;background:${C.border};margin:16px 0}
         .ms-price-features{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px}
-        .ms-price-features li{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.6)}
+        .ms-price-features li{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(15,23,42,0.65)}
         .ms-price-features li svg{flex-shrink:0}
         .ms-btn-plan{width:100%;padding:10px 16px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:opacity 0.12s,transform 0.12s}
         .ms-btn-plan:active{transform:scale(0.97)}
-        .ms-btn-plan.free{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);border:1px solid ${C.border}}
-        .ms-btn-plan.pro{background:${C.cyan};color:#000}
+        .ms-btn-plan.free{background:rgba(8,145,178,0.06);color:rgba(15,23,42,0.65);border:1px solid ${C.border}}
+        .ms-btn-plan.pro{background:${C.cyan};color:#fff}
         .ms-btn-plan.pro:hover{opacity:0.88}
         /* Tool */
         .ms-tool{max-width:760px;margin:0 auto;padding:0 24px 48px}
-        .ms-tool-inner{background:${C.s1};border:1px solid ${C.border};border-radius:16px;padding:24px}
+        .ms-tool-inner{background:${C.s1};border:1px solid ${C.border};border-radius:16px;padding:24px;box-shadow:0 4px 24px rgba(8,145,178,0.08)}
         .ms-tool-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
         .ms-tool-title{font-size:16px;font-weight:800;color:${C.text};letter-spacing:-0.3px}
-        .ms-tool-sub{font-size:11px;color:${C.muted};margin-top:3px}
+        .ms-tool-sub{font-size:11px;color:rgba(15,23,42,0.45);margin-top:3px}
         .ms-action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
         .ms-action-card{background:${C.bg};border:1px solid ${C.border};border-radius:12px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:all 0.15s;text-align:center}
-        .ms-action-card:hover{border-color:rgba(6,182,212,0.3);background:${C.s2}}
-        .ms-action-card.active{border-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.05)}
-        .ms-action-card.highlight{border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.05)}
+        .ms-action-card:hover{border-color:rgba(8,145,178,0.30);background:${C.s2}}
+        .ms-action-card.active{border-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.04)}
+        .ms-action-card.highlight{border-color:rgba(8,145,178,0.30);background:rgba(8,145,178,0.04)}
         .ms-ac-title{font-size:11px;font-weight:700;color:${C.text}}
-        .ms-ac-sub{font-size:10px;color:${C.muted}}
-        .ms-error{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:9px 12px;color:rgba(239,68,68,0.85);font-size:12px;margin-bottom:12px}
-        .ms-spinner{width:40px;height:40px;border:3px solid rgba(6,182,212,0.15);border-top-color:${C.cyan};border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px}
+        .ms-ac-sub{font-size:10px;color:rgba(15,23,42,0.45)}
+        .ms-error{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:9px 12px;color:rgba(185,28,28,0.9);font-size:12px;margin-bottom:12px}
+        .ms-spinner{width:40px;height:40px;border:3px solid rgba(8,145,178,0.15);border-top-color:${C.cyan};border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px}
         @keyframes spin{to{transform:rotate(360deg)}}
         /* Results */
         .ms-card{background:${C.bg};border:1px solid ${C.border};border-radius:12px;padding:14px 16px;margin-bottom:10px}
         .ms-card-label{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:${C.cyan};margin-bottom:8px}
-        .ms-card p{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.65}
-        .ms-ai-item{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+        .ms-card p{font-size:12px;color:rgba(15,23,42,0.65);line-height:1.65}
+        .ms-ai-item{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid rgba(8,145,178,0.08)}
         .ms-ai-item:last-child{border-bottom:none}
-        .ms-rec-pulse{display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:100px;padding:4px 10px;font-size:11px;font-weight:700;color:rgba(239,68,68,0.9);animation:blink 1.4s ease infinite}
+        .ms-rec-pulse{display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:100px;padding:4px 10px;font-size:11px;font-weight:700;color:rgba(185,28,28,0.9);animation:blink 1.4s ease infinite}
         @keyframes blink{0%,100%{opacity:1}50%{opacity:0.55}}
         .ms-rec-dot{width:7px;height:7px;border-radius:50%;background:rgba(239,68,68,0.9)}
         /* Responsive */
