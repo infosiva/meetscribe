@@ -7,6 +7,7 @@ import DesignEffects from '@/components/DesignEffects'
 import type { BrandConfig } from '@/components/SharedNavbar'
 import FloatingChatWrapper from '@/components/FloatingChatWrapper'
 import BackToTop from '@/components/BackToTop'
+import FeedbackWidget from '@/components/FeedbackWidget'
 
 const brand: BrandConfig = {
   name: 'MeetScribe',
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 pt-16">{children}</main>
         <SharedFooter brand={brand} />
         <FloatingChatWrapper />
+        <FeedbackWidget siteName="MeetScribe" />
         <BackToTop accentColor="#0891b2" />
         <Script defer data-site="meetscribe.vercel.app" src="http://31.97.56.148:3098/t.js" strategy="afterInteractive" />
       </body>
