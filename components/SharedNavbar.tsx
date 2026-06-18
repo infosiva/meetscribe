@@ -41,10 +41,14 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group select-none">
             <span
-              className="text-lg leading-none transition-transform duration-200 group-hover:scale-110"
+              className="flex items-center justify-center w-6 h-6 rounded-md transition-transform duration-200 group-hover:scale-110"
+              style={{ background: `linear-gradient(135deg, ${brand.color}cc, ${brand.color})` }}
               aria-hidden
             >
-              {brand.icon}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="9" y="2" width="6" height="12" rx="3" fill="white" />
+                <path d="M5 11a7 7 0 0014 0M12 18v3M9 21h6" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" />
+              </svg>
             </span>
             <span className="font-semibold text-white/90 text-sm tracking-tight">
               {brand.name}
@@ -111,7 +115,15 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
         >
           <div className="px-5 pt-5 pb-4 flex items-center justify-between border-b border-white/[0.05]">
             <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
-              <span className="text-lg">{brand.icon}</span>
+              <span
+                className="flex items-center justify-center w-6 h-6 rounded-md"
+                style={{ background: `linear-gradient(135deg, ${brand.color}cc, ${brand.color})` }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="9" y="2" width="6" height="12" rx="3" fill="white" />
+                  <path d="M5 11a7 7 0 0014 0M12 18v3M9 21h6" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" />
+                </svg>
+              </span>
               <span className="font-semibold text-white/90 text-sm">{brand.name}</span>
             </Link>
             <button onClick={() => setOpen(false)} className="p-1.5 text-white/40 hover:text-white/80 transition-colors">
