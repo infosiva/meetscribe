@@ -84,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 pt-16">{children}</main>
         <SharedFooter brand={brand} />
         <FloatingChatWrapper />
-        <FeedbackWidget siteName="MeetScribe" />
+        <FeedbackWidget siteName="MeetScribe" position="left" />
         <BackToTop accentColor="#0891b2" />
         <Script defer data-site="meetscribe.vercel.app" src="http://31.97.56.148:3098/t.js" strategy="afterInteractive" />
       </body>
