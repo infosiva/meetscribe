@@ -8,11 +8,14 @@
  */
 import { NextRequest, NextResponse } from 'next/server'
 import { stt } from '@/lib/voice'
+import { AI_LIMITER } from '@/lib/rateLimit'
 
 export const runtime = 'nodejs'
 export const maxDuration = 120
 
 export async function POST(req: NextRequest) {
+  const limited = AI_LIMITER.check(req); if (limited) return limited
+
   const formData = await req.formData()
   const file = formData.get('audio') as File | null
 

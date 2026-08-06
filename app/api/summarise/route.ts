@@ -5,6 +5,7 @@
  */
 import { NextRequest, NextResponse } from 'next/server'
 import { callAI } from '@/lib/ai'
+import { AI_LIMITER } from '@/lib/rateLimit'
 
 export const maxDuration = 60
 
@@ -24,6 +25,8 @@ Extract structured information from meeting transcripts. Be specific — names, 
 Always respond with valid JSON only.`
 
 export async function POST(req: NextRequest) {
+  const limited = AI_LIMITER.check(req); if (limited) return limited
+
   const body = await req.json().catch(() => ({}))
   const transcript: string = (body.transcript ?? '').trim()
   const vertical: string   = body.vertical ?? 'estate agent'
