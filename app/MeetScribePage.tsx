@@ -3,6 +3,7 @@ import { useState, useRef } from 'react'
 import { Mic, MicOff, Upload, FileAudio, Copy, Download, CheckCircle, Zap, Clock, Users, ListChecks, Mail, ChevronDown, ChevronUp, FileText, Settings } from 'lucide-react'
 import VoiceButton from '@/components/VoiceButton'
 import type { ContentOverrides } from '@/lib/content'
+import { MagneticButton } from "@infosiva/shared-ui/modern";
 
 interface ActionItem { owner: string; task: string; deadline: string }
 interface MeetingSummary {
@@ -339,7 +340,7 @@ export default function MeetScribePage({ overrides = {} }: { overrides?: Content
             <button className="ms-btn-primary" onClick={() => { toolRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}>
               {overrides.cta ?? 'Try it free'}
             </button>
-            <button className="ms-btn-ghost" onClick={runDemo}>See a demo call</button>
+            <MagneticButton className="ms-btn-ghost" style={{ background: "transparent", color: "rgba(15,23,42,0.55)", border: "1px solid rgba(8,145,178,0.18)", boxShadow: "none" }} onClick={runDemo}>See a demo call</MagneticButton>
           </div>
         </div>
 

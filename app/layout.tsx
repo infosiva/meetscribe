@@ -10,6 +10,7 @@ import { getSiteFlags } from '@/lib/flags'
 import BackToTop from '@/components/BackToTop'
 import FeedbackWidget from '@/components/FeedbackWidget'
 
+import { MotionProvider } from "@infosiva/shared-ui/modern";
 const brand: BrandConfig = {
   name: 'MeetScribe',
   tagline: 'Meeting done. Notes ready instantly — no Zoom lock-in, no complex setup.',
@@ -89,7 +90,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <div className="grain" aria-hidden />
         <DesignEffects />
         <SharedNavbar brand={brand} />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-1 pt-16"><MotionProvider>{children}</MotionProvider></main>
         <SharedFooter brand={brand} />
         {flags.chatbot && <FloatingChatWrapper />}
         <FeedbackWidget siteName="MeetScribe" position="left" />
