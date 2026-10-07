@@ -24,7 +24,7 @@ export default function BackToTop({ accentColor = '#7c3aed' }: Props) {
         pointerEvents: visible ? 'auto' : 'none',
         transform: visible ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.9)',
         transition: 'opacity 200ms ease, transform 200ms cubic-bezier(0.23,1,0.32,1)',
-        boxShadow: `0 4px 20px ${accentColor}44`,
+        boxShadow: `0 4px 20px color-mix(in srgb, ${accentColor} 27%, transparent)`,
       }}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Logo from './Logo'
 
 export interface NavLink { label: string; href: string; external?: boolean }
 export interface BrandConfig {
@@ -30,29 +31,16 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
   return (
     <>
       <nav
-        style={{ '--accent': brand.color } as React.CSSProperties}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
           ${scrolled
-            ? 'bg-[#030305]/80 backdrop-blur-2xl border-b border-white/[0.05]'
+            ? 'bg-[color-mix(in_srgb,var(--background)_85%,transparent)] backdrop-blur-2xl border-b border-[var(--border-default)]'
             : 'bg-transparent'
           }`}
       >
         <div className="max-w-5xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group select-none">
-            <span
-              className="flex items-center justify-center w-6 h-6 rounded-md transition-transform duration-200 group-hover:scale-110"
-              style={{ background: `linear-gradient(135deg, ${brand.color}cc, ${brand.color})` }}
-              aria-hidden
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="9" y="2" width="6" height="12" rx="3" fill="white" />
-                <path d="M5 11a7 7 0 0014 0M12 18v3M9 21h6" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" />
-              </svg>
-            </span>
-            <span className="font-semibold text-white/90 text-sm tracking-tight">
-              {brand.name}
-            </span>
+            <Logo />
           </Link>
 
           {/* Desktop links */}
@@ -64,7 +52,7 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
                   href={l.href}
                   target={l.external ? '_blank' : undefined}
                   rel={l.external ? 'noopener noreferrer' : undefined}
-                  className="px-3 py-1.5 text-[13px] text-white/45 hover:text-white/90 rounded-md hover:bg-white/[0.04] transition-all duration-150"
+                  className="px-3 py-1.5 text-[13px] text-[var(--text-2)] hover:text-[var(--foreground)] rounded-md hover:bg-[var(--muted)] transition-all duration-150"
                 >
                   {l.label}
                 </Link>
@@ -78,9 +66,9 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
               href={cta.href}
               className="px-3.5 py-1.5 text-[13px] font-medium rounded-lg border transition-all duration-150 hover:-translate-y-px active:translate-y-0"
               style={{
-                color: brand.color,
-                borderColor: `${brand.color}40`,
-                background: `${brand.color}10`,
+                color: 'var(--theme-primary)',
+                borderColor: 'color-mix(in srgb, var(--theme-primary) 40%, transparent)',
+                background: 'color-mix(in srgb, var(--theme-primary) 8%, transparent)',
               }}
             >
               {cta.label}
@@ -90,7 +78,7 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
           {/* Mobile toggle */}
           <button
             onClick={() => setOpen(v => !v)}
-            className="md:hidden flex flex-col gap-1.5 p-2 rounded-md text-white/50 hover:text-white/80 transition-colors"
+            className="md:hidden flex flex-col gap-1.5 p-2 rounded-md text-[var(--text-2)] hover:text-[var(--foreground)] transition-colors"
             aria-label={open ? 'Close menu' : 'Open menu'}
           >
             <span className={`block w-5 h-px bg-current transition-all duration-200 origin-center ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
@@ -106,27 +94,18 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0'}`}
           onClick={() => setOpen(false)}
         />
         {/* Drawer */}
         <div
-          className={`absolute top-0 left-0 right-0 bg-[#030305]/98 backdrop-blur-2xl border-b border-white/[0.06] transition-all duration-300 ease-out ${open ? 'translate-y-0' : '-translate-y-full'}`}
+          className={`absolute top-0 left-0 right-0 bg-[var(--background)] backdrop-blur-2xl border-b border-[var(--border-default)] transition-all duration-300 ease-out ${open ? 'translate-y-0' : '-translate-y-full'}`}
         >
-          <div className="px-5 pt-5 pb-4 flex items-center justify-between border-b border-white/[0.05]">
+          <div className="px-5 pt-5 pb-4 flex items-center justify-between border-b border-[var(--border-subtle)]">
             <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
-              <span
-                className="flex items-center justify-center w-6 h-6 rounded-md"
-                style={{ background: `linear-gradient(135deg, ${brand.color}cc, ${brand.color})` }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="9" y="2" width="6" height="12" rx="3" fill="white" />
-                  <path d="M5 11a7 7 0 0014 0M12 18v3M9 21h6" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" />
-                </svg>
-              </span>
-              <span className="font-semibold text-white/90 text-sm">{brand.name}</span>
+              <Logo />
             </Link>
-            <button onClick={() => setOpen(false)} className="p-1.5 text-white/40 hover:text-white/80 transition-colors">
+            <button onClick={() => setOpen(false)} className="p-1.5 text-[var(--text-2)] hover:text-[var(--foreground)] transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
           </div>
@@ -136,17 +115,17 @@ export default function SharedNavbar({ brand }: { brand: BrandConfig }) {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="px-2 py-2.5 text-sm text-white/60 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all"
+                className="px-2 py-2.5 text-sm text-[var(--text-2)] hover:text-[var(--foreground)] rounded-lg hover:bg-[var(--muted)] transition-all"
               >
                 {l.label}
               </Link>
             ))}
-            <div className="h-px bg-white/[0.05] my-2" />
+            <div className="h-px bg-[var(--border-subtle)] my-2" />
             <Link
               href={cta.href}
               onClick={() => setOpen(false)}
               className="px-3 py-2.5 text-sm font-medium rounded-lg text-center transition-all"
-              style={{ color: brand.color, background: `${brand.color}15` }}
+              style={{ color: 'var(--theme-primary)', background: 'color-mix(in srgb, var(--theme-primary) 10%, transparent)' }}
             >
               {cta.label}
             </Link>

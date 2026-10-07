@@ -3,19 +3,21 @@ import Script from 'next/script'
 import './globals.css'
 import SharedNavbar from '@/components/SharedNavbar'
 import SharedFooter from '@/components/SharedFooter'
-import DesignEffects from '@/components/DesignEffects'
 import type { BrandConfig } from '@/components/SharedNavbar'
 import FloatingChatWrapper from '@/components/FloatingChatWrapper'
 import { getSiteFlags } from '@/lib/flags'
 import BackToTop from '@/components/BackToTop'
 import FeedbackWidget from '@/components/FeedbackWidget'
+import { AnimatedBg } from '@/components/AnimatedBg'
+import Telemetry from '@/components/Telemetry'
+import { loadSiteTheme, buildThemeStyleTag, buildGa4Snippet, isValidGa4Id } from '@/lib/theme-loader'
 
 import { MotionProvider } from "@infosiva/shared-ui/modern";
 const brand: BrandConfig = {
   name: 'MeetScribe',
   tagline: 'Meeting done. Notes ready instantly — no Zoom lock-in, no complex setup.',
   icon: '🎙️',
-  color: '#0891b2',
+  color: 'var(--theme-primary)',
   url: 'https://meetscribe.app',
   navLinks: [
     { label: 'How it works', href: '#how' },
@@ -41,8 +43,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const flags = await getSiteFlags('meetscribe')
+  const theme = await loadSiteTheme('meetscribe')
+  const ga4 = buildGa4Snippet(theme)
   return (
-    <html lang="en">
+    <html lang="en" data-layout={theme?.layout?.archetype ?? 'career-portfolio'} suppressHydrationWarning>
       <head>
         <meta name="google-adsense-account" content="ca-pub-4237294630161176" />
         <Script
@@ -66,36 +70,23 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
-          :root {
-            --theme-primary: #0891b2;
-            --theme-secondary: #22d3ee;
-            --theme-base: #f8fafc;
-            --background: #f8fafc;
-            --surface-1: #ffffff;
-            --surface-2: #f0f9ff;
-            --foreground: #0f172a;
-            --text-2: #475569;
-            --border-default: rgba(8,145,178,0.15);
-            --border-strong: rgba(8,145,178,0.30);
-          }
-          body { font-family: 'Inter', system-ui, sans-serif !important; }
-          h1, h2, h3 { font-family: 'Lora', serif !important; }
-          .glass { background: rgba(248,250,252,0.85) !important; border-color: rgba(8,145,178,0.12) !important; }
+          body { font-family: 'Inter', system-ui, sans-serif; }
+          h1, h2, h3 { font-family: 'Lora', serif; }
+          ${buildThemeStyleTag(theme, { background: '#fbf7f5', primary: '#c93d82', secondary: '#e0719f' })}
         ` }} />
+        {ga4 && <script async src={`https://www.googletagmanager.com/gtag/js?id=${theme?.analytics?.ga4Id}`} />}
+        {ga4 && isValidGa4Id(theme?.analytics?.ga4Id) && <script dangerouslySetInnerHTML={{ __html: ga4 }} />}
       </head>
       <body className="flex flex-col min-h-screen">
-        <div className="aurora aurora-primary" aria-hidden />
-        <div className="aurora aurora-secondary" aria-hidden />
-        <div className="aurora aurora-third" aria-hidden />
+        <AnimatedBg theme={theme} />
         <div className="grain" aria-hidden />
-        <DesignEffects />
         <SharedNavbar brand={brand} />
         <main className="flex-1 pt-16"><MotionProvider>{children}</MotionProvider></main>
         <SharedFooter brand={brand} />
         {flags.chatbot && <FloatingChatWrapper />}
         <FeedbackWidget siteName="MeetScribe" position="left" />
-        <BackToTop accentColor="#0891b2" />
-        <Script defer data-site="meetscribe.vercel.app" src="http://31.97.56.148:3098/t.js" strategy="afterInteractive" />
+        <BackToTop accentColor="var(--theme-primary)" />
+        <Telemetry />
       </body>
     </html>
   )
