@@ -1,3 +1,4 @@
+import { sanitizeUserInput } from '@/lib/guard'
 import { NextRequest, NextResponse } from 'next/server'
 import { callAI } from '@/lib/ai'
 import { AI_LIMITER } from '@/lib/rateLimit'
@@ -7,6 +8,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const { messages, system } = await req.json()
+    for (const m of Array.isArray(messages) ? messages : []) if (m && typeof m.content === 'string') m.content = sanitizeUserInput(m.content).text
     const sysPrompt = system ?? 'You are MeetScribe AI — a meeting productivity expert. Help users take better notes, summarise meetings, create action items, and improve meeting efficiency. Be concise and actionable.'
     const text = await callAI(messages, sysPrompt, 400)
     return NextResponse.json({ text })
